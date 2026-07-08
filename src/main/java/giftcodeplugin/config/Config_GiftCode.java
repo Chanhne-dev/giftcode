@@ -23,7 +23,7 @@ public class Config_GiftCode {
         loadGiftCodes();  // Load gift codes từ config khi khởi tạo
     }
 
-    // Đọc dữ liệu từ config.yml
+    // Đọc dữ liệu từ Giftcode.yml
     private void loadGiftCodes() {
         // Nếu chưa có "giftcodes", tạo section
         if (!config.isConfigurationSection("giftcodes")) {

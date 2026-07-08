@@ -1,8 +1,0 @@
-giftcodes:
-  mycode:
-    uses: 3
-    Time_user: 0
-    active: true
-    redeemedPlayers: []
-    commands: []
-    allowedPlayers: []

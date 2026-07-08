@@ -1,14 +1,14 @@
-list_giftcode: "§eDanh sách giftcode:"
-reload_plugin: "§aĐã reload plugin/config."
+list_giftcode: "&eDanh sách giftcode:"
+reload_plugin: "&aĐã reload plugin/config."
 missing_argument: "&cBạn cần nhập đủ tham số!"
 no_permission: "&cBạn không có quyền sử dụng lệnh này!"
 no_giftcode: "&cGiftCode không khả dụng (hết hạn, đã dùng, hết lượt, bị vô hiệu hóa)."
 
 usage_gc: "&cSử dụng: /gc %command% <code> <player>"
-code_user: "§cSử dụng: /code <mã_code>"
-enable_user: "§cSử dụng: /gc enable <code>"
-delete_user: "§cSử dụng: /gc delete <code>"
-disable_user: "§cSử dụng: /gc disable <code>"
+code_user: "&cSử dụng: /code <mã_code>"
+enable_user: "&cSử dụng: /gc enable <code>"
+delete_user: "&cSử dụng: /gc delete <code>"
+disable_user: "&cSử dụng: /gc disable <code>"
 plugin_user: "&cUsage: /gc <create|delete|reload|enable|disable|list|permission>"
 
 giftcode:
@@ -20,8 +20,8 @@ giftcode:
   not_found: "&cGiftcode &e%code% &ckhông tồn tại!"
   deleted: "&eGiftcode &e%code% &eđã hết lượt và bị xóa!"
   redeemed: "&aBạn đã sử dụng giftcode &e%code% &athành công!"
-  enableGiftCode: "&§aĐã bật giftcode &e%code% &athành công!"
-  disableGiftCode: "&§aĐã tắt giftcode &e%code% &athành công!"
+  enableGiftCode: "&aĐã bật giftcode &e%code% &athành công!"
+  disableGiftCode: "&aĐã tắt giftcode &e%code% &athành công!"
   random:
     locked: "&cRandom GiftCode cannot be đổi tên."
 
@@ -36,8 +36,11 @@ permission:
   required: "&7Yêu cầu Permission: &e%permission%"
 
 info:
+  usage: "&cUsage: /gc info <code> [items|commands]"
   header: "&8=========== &6GiftCode Info &8==========="
   footer: "&8==================================="
+  enabled: "&aEnabled"
+  disabled: "&cDisabled"
   code: "&eCode: &f%code%"
   status: "&eStatus: %status%"
   uses: "&eUses: &f%used%/%max%"
@@ -47,6 +50,8 @@ info:
   items: "&eItems: &f%items%"
   commands: "&eCommands: &f%commands%"
   permission: "&ePermission: &f%permission%"
+  items_empty: "&7GiftCode không có Item."
+  commands_empty: "&7GiftCode không có Command."
 
   hover:
     copy: "&eClick to copy"

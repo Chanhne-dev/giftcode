@@ -31,7 +31,7 @@ public class Main_GiftCode extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        saveDefaultConfig();
+        // saveDefaultConfig();
         saveResource("messages.yml", false);
         messageManager = new Messager(this);
         vaultProvider = new VaultProvider(this);
@@ -46,7 +46,7 @@ public class Main_GiftCode extends JavaPlugin {
         BuilderManager builderManager = new BuilderManager();
         ChatInputManager chatInputManager = new ChatInputManager();
 
-        getServer().getPluginManager().registerEvents(new CreateGiftCodeListener(this,configGiftCode,builderManager,chatInputManager),this);
+        getServer().getPluginManager().registerEvents(new CreateGiftCodeListener(this, configGiftCode, builderManager, chatInputManager),this);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS,
             event -> {
                 // Đăng ký lệnh

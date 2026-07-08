@@ -30,6 +30,7 @@ public class GiftCode_Completer implements TabCompleter {
             List<String> suggestions = new ArrayList<>();
             // Các sub-lệnh có sẵn:
             suggestions.add("create");
+            suggestions.add("info");
             suggestions.add("delete");
             suggestions.add("reload");
             suggestions.add("enable");
@@ -45,10 +46,15 @@ public class GiftCode_Completer implements TabCompleter {
             if (args.length == 4) return partialMatch(Arrays.asList("0","30m","1h","1d","7d","30d","[Time]"), args[3]);
         }
 
+        if (args[0].equalsIgnoreCase("info") && args.length == 2) {
+            return partialMatch(new ArrayList<>(configGiftCode.getGiftCodes().keySet()), args[1]);
+        }
+
         if (args.length == 2) {
             String sub = args[0].toLowerCase();
 
             if (sub.equals("delete")
+                    || sub.equals("info")
                     || sub.equals("enable")
                     || sub.equals("disable")
                     || sub.equals("permission")
@@ -60,6 +66,10 @@ public class GiftCode_Completer implements TabCompleter {
 
         if (args.length == 3 && args[0].equalsIgnoreCase("permission")) {
             return partialMatch(Arrays.asList("add", "delete", "list"),args[2]);
+        }
+
+        if (args[0].equalsIgnoreCase("info") && args.length == 3) {
+            return partialMatch(Arrays.asList("items", "commands"), args[2]);
         }
 
         if (args.length == 4 && args[0].equalsIgnoreCase("permission") && args[2].equalsIgnoreCase("add")) {

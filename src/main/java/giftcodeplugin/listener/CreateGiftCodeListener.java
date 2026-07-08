@@ -40,7 +40,7 @@ public class CreateGiftCodeListener implements Listener {
     private final BuilderManager builderManager;
     private final ChatInputManager chatInputManager;
 
-    public CreateGiftCodeListener(Main_GiftCode plugin,Config_GiftCode configGiftCode,BuilderManager builderManager,ChatInputManager chatInputManager) {
+    public CreateGiftCodeListener(Main_GiftCode plugin, Config_GiftCode configGiftCode, BuilderManager builderManager, ChatInputManager chatInputManager) {
         this.plugin = plugin;
         this.configGiftCode = configGiftCode;
         this.builderManager = builderManager;
