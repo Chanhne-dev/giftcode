@@ -1,236 +1,162 @@
-# GiftCode Plugin
+# GiftCode
 
-Plugin GiftCode cho phép quản trị viên tạo GiftCode để người chơi nhận phần thưởng như:
-
-- 💰 Tiền Vault
-- 💎 Shards
-- 🎁 Item
-- ⚡ Thực thi Commands
-- 🔒 Giới hạn bằng Permission
-- ⏰ Thời gian hết hạn
-- 🔢 Giới hạn số lần sử dụng
+A modern GiftCode plugin for Paper servers that allows administrators to create customizable GiftCodes with Vault, Shards, Items, Commands, Permissions, and expiration support.
 
 ---
 
-# Lệnh quản trị
+## Features
 
-Tất cả các lệnh dưới đây yêu cầu quyền:
-
-```
-giftcode.admin
-```
+- Easy-to-use creation GUI
+- Custom or Random GiftCodes
+- Reward players with:
+  - Vault Money
+  - Shards
+  - Items
+  - Console Commands
+- Permission-restricted GiftCodes
+- Expiration time support
+- Usage limits
+- Interactive `/gc info`
+- Click to copy GiftCode
+- PlaceholderAPI support
+- Fully configurable messages
+- Supports Paper 1.21+
 
 ---
 
-# Tạo GiftCode
+## Requirements
 
-## Tạo GiftCode với tên tùy chỉnh
+| Requirement | Version |
+|------------|---------|
+| Java | 21+ |
+| Minecraft | 1.21+ |
+| Server | Paper / Leaf |
+| Vault | Optional |
+| PlaceholderAPI | Optional |
+
+---
+
+## Installation
+
+1. Download the [latest version](https://github.com/Chanhne-dev/giftcode/releases).
+
+2. Put the plugin into
+
+```text
+plugins/
+```
+
+3. Install optional dependencies
+
+- Vault
+- Shard
+- PlaceholderAPI
+
+4. Restart the server.
+
+---
+
+## Features Overview
+
+### Create GiftCode
 
 ```
 /gc create <code> [uses] [expire]
 ```
 
-Ví dụ:
+Example
 
 ```
 /gc create VIP
 /gc create VIP 5
-/gc create VIP 10 7d
-/gc create EVENT 1 12h
+/gc create EVENT 1 7d
 ```
 
-### Tham số
-
-| Tham số | Mô tả |
-|---------|------|
-| code | Tên GiftCode |
-| uses | Số lần sử dụng |
-| expire | Thời gian hết hạn |
-
-Nếu không nhập:
-
-- uses = 1
-- expire = Không giới hạn
-
-Sau khi nhập lệnh sẽ mở GUI để chỉnh sửa:
-
-- Tiền Vault
-- Shards
-- Reward Items
-- Commands
-- Permission
+After executing the command, the Create GUI will open.
 
 ---
 
-# Tạo GiftCode ngẫu nhiên
+### Create Random GiftCodes
 
 ```
-/gc create random <amount> [uses] [expire]
+/gc create random <amount> [expire]
 ```
 
-Ví dụ:
+Example
 
 ```
-/gc create random 1
-/gc create random 10
-/gc create random 50 1 7d
+/gc create random 100
+/gc create random 100 30d
 ```
 
-Ý nghĩa:
-
-```
-amount = số GiftCode tạo ra
-uses = số lần sử dụng mỗi GiftCode
-expire = thời gian hết hạn
-```
-
-Ví dụ:
-
-```
-/gc create random 100 1 30d
-```
-
-sẽ tạo
-
-- 100 GiftCode
-- mỗi GiftCode dùng 1 lần
-- hết hạn sau 30 ngày
-
-Sau khi nhấn **Confirm**, plugin sẽ liệt kê toàn bộ GiftCode vừa tạo trong chat.
-
-Nhấn vào GiftCode để sao chép.
+The plugin generates random GiftCodes after clicking **Confirm**.
 
 ---
 
-# Xóa GiftCode
+### GiftCode Information
 
 ```
-/gc delete <code>
+/gc info <code>
 ```
 
-Ví dụ
+Interactive information page.
 
-```
-/gc delete VIP
-```
+Features
+
+- Click Code → Copy
+- Click Status → Enable / Disable
+- Click Items → View rewards
+- Click Commands → View commands
 
 ---
 
-# Bật GiftCode
+### Permission Management
 
-```
-/gc enable <code>
-```
-
-Ví dụ
-
-```
-/gc enable VIP
-```
-
----
-
-# Tắt GiftCode
-
-```
-/gc disable <code>
-```
-
-Ví dụ
-
-```
-/gc disable VIP
-```
-
----
-
-# Danh sách GiftCode
-
-```
-/gc list
-```
-
-Hiển thị toàn bộ GiftCode hiện có.
-
----
-
-# Reload Plugin
-
-```
-/gc reload
-```
-
-Reload:
-
-- config.yml
-- Giftcode.yml
-- messages.yml
-
----
-
-# Permission GiftCode
-
-Thiết lập quyền cần có để sử dụng GiftCode.
-
-## Thêm Permission
+Add permission
 
 ```
 /gc permission <code> add <permission>
 ```
 
-Ví dụ
-
-```
-/gc permission VIP add giftcode.vip
-```
-
----
-
-## Xóa Permission
+Remove permission
 
 ```
 /gc permission <code> delete
 ```
 
-Ví dụ
-
-```
-/gc permission VIP delete
-```
-
----
-
-## Xem Permission
+View permission
 
 ```
 /gc permission <code> list
 ```
 
-Ví dụ
+---
+
+### Other Commands
 
 ```
-/gc permission VIP list
+/gc delete <code>
+
+/gc enable <code>
+
+/gc disable <code>
+
+/gc list
+
+/gc reload
 ```
 
 ---
 
-# Người chơi sử dụng GiftCode
+### Redeem GiftCode
 
 ```
 /code <giftcode>
 ```
 
-Ví dụ
-
-```
-/code VIP2026
-```
-
 ---
 
-# Định dạng thời gian
-
-Plugin hỗ trợ các định dạng:
+## Supported Time Format
 
 ```
 30s
@@ -239,152 +165,82 @@ Plugin hỗ trợ các định dạng:
 7d
 ```
 
-Có thể kết hợp:
+Combination
 
 ```
-1d12h
-2d6h30m
-3h20m15s
+1d 12h
+2d 6h 30m
+3h 20m 15s
 ```
 
-Không giới hạn thời gian:
+Permanent
 
 ```
 0
-```
-
-hoặc
-
-```
 never
 ```
 
 ---
 
-# GUI tạo GiftCode
+## GUI
 
-GUI cho phép chỉnh sửa:
+### Create GiftCode
 
-- Tên GiftCode
-- Số lần sử dụng
-- Thời gian hết hạn
-- Tiền Vault
-- Shards
-- Reward Items
-- Commands
-- Permission
-
-Nếu tạo bằng:
-
-```
-/gc create random
-```
-
-thì:
-
-- Không thể chỉnh sửa tên GiftCode
-- Tên sẽ được tạo ngẫu nhiên khi nhấn Confirm
+<img width="344" height="146" alt="Create GUI" src="https://github.com/user-attachments/assets/12fba37b-2081-44a6-8510-4b49d4ae64ff"/>
 
 ---
 
-# Phần thưởng hỗ trợ
+### GiftCode Information
 
-Một GiftCode có thể chứa đồng thời:
-
-- Tiền Vault
-- Shards
-- Reward Items
-- Commands
-
-Ví dụ:
-
-```
-✔ 100.000$
-✔ 50 Shards
-✔ Diamond Sword
-✔ Key x3
-✔ crate give %player_name% vip 1
-```
+<img width="304" height="202" alt="GiftCode Info" src="https://github.com/user-attachments/assets/73c942d5-c262-48bb-a032-b3f03e18bb25"/>
 
 ---
 
-# PlaceholderAPI
+## Permissions
 
-Plugin hỗ trợ PlaceholderAPI trong:
-
-```
-messages.yml
-```
-
-Ví dụ:
-
-```
-%player_name%
-%vault_eco_balance%
-```
-
----
-
-# File dữ liệu
-
-GiftCode được lưu tại:
-
-```
-plugins/GiftCode/Giftcode.yml
-```
-
-Ngôn ngữ:
-
-```
-plugins/GiftCode/messages.yml
-```
-
----
-
-# Quyền
-
-## Quản trị
+Administrator
 
 ```
 giftcode.admin
 ```
-
-## Ví dụ Permission GiftCode
-
-```
-giftcode.vip
-giftcode.mvp
-giftcode.legend
-giftcode.staff
-```
-
-Chỉ người chơi có Permission tương ứng mới có thể sử dụng GiftCode.
-
 ---
 
-# Ví dụ tạo GiftCode
-
-## GiftCode cho tất cả người chơi
+## Configuration Files
 
 ```
-/gc create WELCOME 100 never
+plugins/
+└── GiftCode/
+    ├── Giftcode.yml
+    └── messages.yml
 ```
 
 ---
 
-## GiftCode VIP
+## Contributing
 
-```
-/gc create VIP 20 30d
-/gc permission VIP add giftcode.vip
-```
+Bug reports and feature requests are welcome.
+
+[GitHub Issues](https://github.com/Chanhne-dev/giftcode/issues)
 
 ---
 
-## Tạo 50 GiftCode ngẫu nhiên
+## License
 
-```
-/gc create random 50 1 7d
-```
+No license has been specified for this project.
 
-Sau khi nhấn Confirm, plugin sẽ hiển thị toàn bộ 50 GiftCode để quản trị viên sao chép và phát cho người chơi.
+---
+
+## Credits
+
+Developer
+
+**Chanhne**
+
+Libraries
+
+- Paper API
+- Adventure API
+- Vault
+- PlaceholderAPI
+- SignGUI
+- AnvilGUI
