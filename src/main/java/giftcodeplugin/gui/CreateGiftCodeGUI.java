@@ -35,14 +35,13 @@ public class CreateGiftCodeGUI {
             inv.setItem(3, createButton(
                     Material.NAME_TAG,
                     plugin.getMessageManager().get(player, "gui.create.code.name"),
-                    plugin.getMessageManager().getList(player, "gui.create.code.random")
-            ));
+                    plugin.getMessageManager().getList(player, "gui.create.code.random")));
+
         } else {
             inv.setItem(3, createButton(
                     Material.NAME_TAG,
                     plugin.getMessageManager().get(player, "gui.create.code.name"),
-                    plugin.getMessageManager().getList(player, "gui.create.code.lore", "code", builder.getCode())
-            ));
+                    plugin.getMessageManager().getList(player, "gui.create.code.lore", "code", builder.getCode())));
         }
 
         inv.setItem(4, createButton(
@@ -50,9 +49,7 @@ public class CreateGiftCodeGUI {
                 plugin.getMessageManager().get(player, "gui.create.uses.name"),
                 plugin.getMessageManager().getList(player,
                         "gui.create.uses.lore",
-                        "uses", String.valueOf(builder.getUses())
-                )
-        ));
+                        "uses", String.valueOf(builder.getUses()))));
 
         inv.setItem(5, createButton(
                 Material.CLOCK,
@@ -60,9 +57,7 @@ public class CreateGiftCodeGUI {
                 plugin.getMessageManager().getList(player,
                         "gui.create.expire.lore",
                         "expire",
-                        builder.getExpireAt() == 0 ? "Never" : NumberFomat.formatDuration(builder.getExpireAt())
-                )
-        ));
+                        builder.getExpireAt() == 0 ? "Never" : NumberFomat.formatDuration(builder.getExpireAt()))));
 
         inv.setItem(10, createButton(
                 builder.isVaultEnabled() ? Material.EMERALD : Material.GRAY_DYE,
@@ -73,8 +68,7 @@ public class CreateGiftCodeGUI {
                                 "vault", NumberFomat.formatNumber(builder.getVault()))
                         : plugin.getMessageManager().getList(
                                 player,
-                                "gui.create.vault.disabled")
-        ));
+                                "gui.create.vault.disabled")));
 
         inv.setItem(11, createButton(
                 builder.isShardEnabled() ? Material.AMETHYST_SHARD : Material.GRAY_DYE,
@@ -84,42 +78,38 @@ public class CreateGiftCodeGUI {
                                 "gui.create.shard.lore",
                                 "shard", NumberFomat.formatNumber(builder.getShard()))
                         : plugin.getMessageManager().getList(player,
-                                "gui.create.shard.disabled")
-        ));
+                                "gui.create.shard.disabled")));
 
         inv.setItem(12, createButton(
                 Material.CHEST,
                 plugin.getMessageManager().get(player, "gui.create.items.name"),
                 plugin.getMessageManager().getList(player,
                         "gui.create.items.lore",
-                     "items", String.valueOf(builder.getItems().size()))
-        ));
+                     "items", String.valueOf(builder.getItems().size()))));
 
         inv.setItem(14, createButton(
                 Material.WRITABLE_BOOK,
                 plugin.getMessageManager().get(player, "gui.create.commands.name"),
                 plugin.getMessageManager().getList(player,
                         "gui.create.commands.lore",
-                        "commands", String.valueOf(builder.getCommands().size()))
-        ));
+                        "commands", String.valueOf(builder.getCommands().size()))));
+
         inv.setItem(16, createInfo(builder));
 
         inv.setItem(20, createButton(
                 Material.RED_STAINED_GLASS_PANE,
                 plugin.getMessageManager().get(player, "gui.create.cancel.name"),
-                plugin.getMessageManager().getList(player,"gui.create.cancel.lore")
-        ));
+                plugin.getMessageManager().getList(player,"gui.create.cancel.lore")));
 
         inv.setItem(24, createButton(
                 Material.LIME_STAINED_GLASS_PANE,
                 plugin.getMessageManager().get(player, "gui.create.confirm.name"),
-                plugin.getMessageManager().getList(player,"gui.create.confirm.lore")
-        ));
+                plugin.getMessageManager().getList(player,"gui.create.confirm.lore")));
+
         player.openInventory(inv);
     }
 
     private ItemStack createButton(Material mat, Component name, List<Component> lore) {
-
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
 
@@ -139,9 +129,7 @@ public class CreateGiftCodeGUI {
         meta.lore(Arrays.asList(
                 Component.text("§7Code: §f" + (builder.isRandomCode() ? "Random" : builder.getCode())),
                 Component.text("§7Uses: §e" + builder.getUses()),
-                Component.text("§7Expire: " + (builder.getExpireAt() == 0
-                        ? "§aNever"
-                        : "§e" + NumberFomat.formatDuration(builder.getExpireAt()))),
+                Component.text("§7Expire: " + (builder.getExpireAt() == 0 ? "§aNever" : "§e" + NumberFomat.formatDuration(builder.getExpireAt()))),
                 Component.empty(),
                 Component.text("§7Vault: §6$" + NumberFomat.formatNumber(builder.getVault())),
                 Component.text("§7Shard: §d" + NumberFomat.formatNumber(builder.getShard())),
@@ -159,9 +147,7 @@ public class CreateGiftCodeGUI {
         ItemMeta meta = item.getItemMeta();
 
         meta.displayName(Component.text("§6" + name));
-        meta.lore(Arrays.asList(
-                Component.text("§7Status: " + (enabled ? "§aEnabled" : "§cDisabled"))
-        ));
+        meta.lore(Arrays.asList(Component.text("§7Status: " + (enabled ? "§aEnabled" : "§cDisabled"))));
 
         item.setItemMeta(meta);
         return item;

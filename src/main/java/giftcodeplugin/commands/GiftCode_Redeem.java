@@ -65,6 +65,7 @@ public class GiftCode_Redeem implements CommandExecutor {
                     plugin.getMessageManager().send(sender, "enable_user");
                     return true;
                 }
+
                 configGiftCode.enableGiftCode(args[1]);
                 plugin.getMessageManager().send(sender,"giftcode.enableGiftCode","code", args[1]);
                 break;
@@ -74,6 +75,7 @@ public class GiftCode_Redeem implements CommandExecutor {
                     plugin.getMessageManager().send(sender, "disable_user");
                     return true;
                 }
+
                 configGiftCode.disableGiftCode(args[1]);
                 plugin.getMessageManager().send(sender,"giftcode.disableGiftCode","code", args[1]);
                 break;
@@ -83,6 +85,7 @@ public class GiftCode_Redeem implements CommandExecutor {
                 for (String code : configGiftCode.getGiftCodes().keySet()) {
                     sender.sendMessage("- " + code);
                 }
+
                 break;
 
             case "permission":
@@ -134,6 +137,12 @@ public class GiftCode_Redeem implements CommandExecutor {
     }
 
     private void handleCreate(CommandSender sender, String[] args) {
+        Player player = (Player) sender;
+        boolean random = args[1].equalsIgnoreCase("random");
+        String code;
+        int uses = 1;
+        int amount = 1;
+        long expireAt = 0;
 
         if (args.length < 2) {
             plugin.getMessageManager().send(sender, "create_user");
@@ -144,32 +153,6 @@ public class GiftCode_Redeem implements CommandExecutor {
             plugin.getMessageManager().send(sender, "player_only");
             return;
         }
-        Player player = (Player) sender;
-
-        // /gc create random <num>
-        // if (args.length >= 3 && args[1].equalsIgnoreCase("random")) {
-        //     int num = 1;
-        //     try {
-        //         num = Integer.parseInt(args[2]);
-        //     } catch (NumberFormatException ignored) {}// Tạo giftcode random, mỗi code dùng 1 lần
-        //         List<String> codes = configGiftCode.createRandomCodes(num);
-
-        //         // Gửi tin nhắn
-        //         plugin.getMessageManager().send(sender, "giftcode.random_created", "num", String.valueOf(num));
-        //     for (String c : codes) {
-        //         sender.sendMessage(
-        //             Component.text("▶ " + c, NamedTextColor.GOLD)
-        //                     .clickEvent(ClickEvent.copyToClipboard(c))
-        //                     .hoverEvent(HoverEvent.showText(Component.text("Click để sao chép", NamedTextColor.YELLOW)))
-        //         );
-        //     }
-        //     return;
-        // }
-        boolean random = args[1].equalsIgnoreCase("random");
-        String code;
-        int uses = 1;
-        int amount = 1;
-        long expireAt = 0;
 
         if (random) {
             code = configGiftCode.generateRandomCode();
@@ -199,8 +182,8 @@ public class GiftCode_Redeem implements CommandExecutor {
         GiftCodeBuilder builder = new GiftCodeBuilder(code, uses, expireAt);
         builder.setRandomCode(random);
         builder.setRandomAmount(amount);
-
         builderManager.create(player.getUniqueId(), builder);
+
         new CreateGiftCodeGUI(plugin).open(player, builder);
     }
 }

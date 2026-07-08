@@ -35,7 +35,24 @@ permission:
   no_permission: "&cBạn không có quyền sử dụng GiftCode này."
   required: "&7Yêu cầu Permission: &e%permission%"
 
+info:
+  header: "&8=========== &6GiftCode Info &8==========="
+  footer: "&8==================================="
+  code: "&eCode: &f%code%"
+  status: "&eStatus: %status%"
+  uses: "&eUses: &f%used%/%max%"
+  expire: "&eExpire: &f%expire%"
+  vault: "&eVault: &a$%vault%"
+  shard: "&eShard: &b%shard%"
+  items: "&eItems: &f%items%"
+  commands: "&eCommands: &f%commands%"
+  permission: "&ePermission: &f%permission%"
 
+  hover:
+    copy: "&eClick to copy"
+    status: "&eClick to change status"
+    items: "&eClick to view reward items"
+    commands: "&eClick to view commands"
 
 gui:
   create:
@@ -48,54 +65,63 @@ gui:
       random:
         - "&7Code: &eRandom"
         - "&cRandom GiftCode cannot be renamed."
+
     uses:
       name: "&bUses"
       lore:
         - "&fClick to edit max uses."
         - "&f(&b%uses%&f)"
+
     expire:
       name: "&eExpire"
       lore:
         - "&fClick to edit expiry."
         - "&f(&6%expire%&f)"
+
     permission:
       name: "&dPermission"
       lore:
         - "&fClick to edit permission."
         - "&f(&d%permission%&f)"
+
     vault:
       name: "&aMoney"
+      disabled-message: "&cMoney reward đang tắt."
       lore:
         - "&fClick to enter the reward."
         - "&f(&a$%vault%&f)"
       disabled:
         - "&7Reward disabled."
         - "&f(-)"
-      disabled-message: "&cMoney reward đang tắt."
+
     shard:
       name: "&dShard"
+      disabled-message: "&cShard reward đang tắt."
       lore:
         - "&fClick to enter the reward."
         - "&f(&b%shard% Shards&f)"
       disabled:
         - "&7Reward disabled."
         - "&f(-)"
-      disabled-message: "&cShard reward đang tắt."
+
     items:
       name: "&6Reward Items"
       lore:
         - "&fClick to edit reward items."
         - "&f(&e%items% Items&f)"
+
     commands:
       name: "&bCommands"
       lore:
         - "&fClick to edit commands."
         - "&f(&b%commands% Commands&f)"
+
     cancel:
       name: "&cCancel"
       lore:
         - "&fCancel creating this GiftCode."
         - "&7All unsaved changes will be lost."
+
     confirm:
       name: "&aConfirm"
       lore:

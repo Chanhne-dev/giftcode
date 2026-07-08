@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ChatInputManager {
-    private final Map<UUID, Input> inputs = new HashMap<>();
 
+    private final Map<UUID, Input> inputs = new HashMap<>();
     public enum Type {VAULT, SHARD, COMMAND}
 
     private static class Input {

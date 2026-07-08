@@ -28,7 +28,6 @@ public class Messager {
 
     // Reload lại file messages.yml
     public void reload() {
-
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();
         }

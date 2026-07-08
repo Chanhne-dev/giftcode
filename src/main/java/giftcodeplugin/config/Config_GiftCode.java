@@ -36,7 +36,6 @@ public class Config_GiftCode {
 
             List<UUID> redeemedPlayers = new ArrayList<>();
             List<ItemStack> items = new ArrayList<>();
-
             int uses = config.getInt("giftcodes." + codeKey + ".uses");
             long createGiftCode = config.getLong("giftcodes." + codeKey + ".createGiftCode");
             double vaultMoney = config.getDouble("giftcodes." + codeKey + ".vault.money", 0);
@@ -44,7 +43,6 @@ public class Config_GiftCode {
             boolean active = config.getBoolean("giftcodes." + codeKey + ".active", true);
             boolean vaultEnabled = config.getBoolean("giftcodes." + codeKey + ".vault.enabled", false);
             boolean shardEnabled = config.getBoolean("giftcodes." + codeKey + ".shard.enabled", false);
-
             String permission = config.getString("giftcodes." + codeKey + ".permission","");
             List<String> redeemedStr = config.getStringList("giftcodes." + codeKey + ".redeemedPlayers");
             List<String> commands = config.getStringList("giftcodes." + codeKey + ".commands");
@@ -181,6 +179,7 @@ public class Config_GiftCode {
         return 0; // 0 = không giới hạn
     }
 
+    // Điều chỉnh quyền hạn cho Gifcode
     public void setPermission(String code, String permission) {
         GiftCode giftCode = giftCodes.get(code);
         if (giftCode == null) return;
@@ -200,11 +199,6 @@ public class Config_GiftCode {
         } catch (IOException e) {
             Bukkit.getLogger().log(Level.SEVERE, "Could not save Giftcode.yml",e);
         }
-    }
-
-    // Lấy map giftCodes
-    public Map<String, GiftCode> getGiftCodes() {
-        return giftCodes;
     }
 
     // Reload config
@@ -229,8 +223,7 @@ public class Config_GiftCode {
 
             boolean renamed = configFile.renameTo(oldFile);
             if (!renamed) {
-                Bukkit.getLogger().warning("Không thể đổi tên file " + configFile.getName()
-                        + " thành " + oldFile.getName());
+                Bukkit.getLogger().warning("Không thể đổi tên file " + configFile.getName() + " thành " + oldFile.getName());
             }
 
             try {
@@ -256,9 +249,14 @@ public class Config_GiftCode {
         for (UUID uuid : giftCode.getRedeemedPlayers()) {
             redeemedUUIDs.add(uuid.toString());
         }
-        config.set("giftcodes." + code + ".redeemedPlayers", redeemedUUIDs);
 
+        config.set("giftcodes." + code + ".redeemedPlayers", redeemedUUIDs);
         saveConfig();
+    }
+
+    // Lấy map giftCodes
+    public Map<String, GiftCode> getGiftCodes() {
+        return giftCodes;
     }
 
     public GiftCode getGiftCode(String code) {

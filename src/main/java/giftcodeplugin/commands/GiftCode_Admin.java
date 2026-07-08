@@ -99,7 +99,6 @@ public class GiftCode_Admin implements CommandExecutor {
             if (item == null || item.getType().isAir()) continue;
             slots++;
         }
-
         return slots;
     }
 
@@ -107,11 +106,8 @@ public class GiftCode_Admin implements CommandExecutor {
         int free = 0;
 
         for (ItemStack item : player.getInventory().getStorageContents()) {
-            if (item == null || item.getType().isAir()) {
-                free++;
-            }
+            if (item == null || item.getType().isAir()) free++;
         }
-
         return free;
     }
 }

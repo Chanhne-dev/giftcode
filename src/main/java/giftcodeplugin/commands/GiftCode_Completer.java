@@ -73,9 +73,8 @@ public class GiftCode_Completer implements TabCompleter {
 
     // Hàm hỗ trợ lọc kết quả gợi ý theo phần đã nhập
     private List<String> partialMatch(List<String> source, String input) {
-        if (input == null || input.isEmpty()) {
-            return source;
-        }
+        if (input == null || input.isEmpty()) return source;
+
         List<String> matches = new ArrayList<>();
         String lower = input.toLowerCase();
         for (String s : source) {

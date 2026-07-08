@@ -58,7 +58,6 @@ public class CreateGiftCodeListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-
         if (!(event.getInventory().getHolder() instanceof CreateGiftCodeHolder)) return;
         if (event.getClickedInventory() == null) return;
 
@@ -86,16 +85,18 @@ public class CreateGiftCodeListener implements Listener {
 
                 new CreateGiftCodeGUI(plugin).open(player, builder);
                 break;
+
             case 3:
                 if (builder.isRandomCode()) {
                     plugin.getMessageManager().send(player, "giftcode.random.locked");
                     return;
                 }
+
                 openAnvil(player,"GiftCode",builder.getCode(),builder::setCode,builder);
                 break;
 
             case 4:
-                openAnvil(player,"Uses", String.valueOf(builder.getUses()),
+                openAnvil(player, "Uses", String.valueOf(builder.getUses()),
                     text -> {
                         try {builder.setUses(Integer.parseInt(text));}
                         catch (NumberFormatException e) {player.sendMessage("§cUses không hợp lệ.");}
@@ -104,7 +105,7 @@ public class CreateGiftCodeListener implements Listener {
                 break;
 
             case 5:
-                openAnvil(player,"Expire", builder.getExpireAt() == 0 ? "" : NumberFomat.formatDuration(builder.getExpireAt()),
+                openAnvil(player, "Expire", builder.getExpireAt() == 0 ? "" : NumberFomat.formatDuration(builder.getExpireAt()),
                     text -> {
                         try {builder.setExpireAt(NumberFomat.parseDuration(text));}
                         catch (Exception e) {player.sendMessage("§cThời gian không hợp lệ.");}
@@ -131,9 +132,11 @@ public class CreateGiftCodeListener implements Listener {
                 player.closeInventory();
                 openNumber(player, "Shard", builder.getShard(), builder::setShard, builder);
                 break;
+
             case 12:
                 new RewardItemsGUI().open(player, builder);
                 break;
+
             case 14:
                 chatInputManager.start(player.getUniqueId(), ChatInputManager.Type.COMMAND);
                 player.closeInventory();
@@ -158,6 +161,7 @@ public class CreateGiftCodeListener implements Listener {
                 player.closeInventory();
                 player.sendMessage("§cĐã hủy tạo GiftCode.");
                 break;
+
             case 24:
                 if (builder.isRandomCode()) {
                     List<String> codes = new ArrayList<>();
@@ -177,10 +181,7 @@ public class CreateGiftCodeListener implements Listener {
 
                     player.closeInventory();
                     builderManager.remove(player.getUniqueId());
-                    plugin.getMessageManager().send(
-                            player,
-                            "giftcode.random_created",
-                            "amount",
+                    plugin.getMessageManager().send(player, "giftcode.random_created", "amount",
                             String.valueOf(codes.size())
                     );
 
@@ -213,9 +214,7 @@ public class CreateGiftCodeListener implements Listener {
                 if (builder.getExpireAt() == 0) {
                     plugin.getMessageManager().send(player, "giftcode.no_expiry");
                 } else {
-                    plugin.getMessageManager().send(player,
-                            "giftcode.expiry",
-                            "expiry",
+                    plugin.getMessageManager().send(player, "giftcode.expiry", "expiry",
                             NumberFomat.formatDuration(builder.getExpireAt())
                     );
                 }
@@ -226,7 +225,6 @@ public class CreateGiftCodeListener implements Listener {
 
     @EventHandler
     public void onClose(InventoryCloseEvent event) {
-
         if (!(event.getInventory().getHolder() instanceof RewardItemsHolder)) return;
 
         Player player = (Player) event.getPlayer();
@@ -276,7 +274,6 @@ public class CreateGiftCodeListener implements Listener {
                 .title(title)
                 .text(value == null ? "" : value)
                 .onClick((slot, state) -> {
-
                     if (slot != AnvilGUI.Slot.OUTPUT) {
                         return Collections.emptyList();
                     }
@@ -285,11 +282,10 @@ public class CreateGiftCodeListener implements Listener {
 
                     return Arrays.asList(
                             AnvilGUI.ResponseAction.close(),
-                            AnvilGUI.ResponseAction.run(() ->
-                                    Bukkit.getScheduler().runTask(plugin,
-                                            () -> new CreateGiftCodeGUI(plugin).open(player, builder))
-                            )
-                    );
+                            AnvilGUI.ResponseAction.run(()
+                            -> Bukkit.getScheduler().runTask(plugin, ()
+                            -> new CreateGiftCodeGUI(plugin).open(player, builder))
+                            ));
                 })
                 .open(player);
     }
