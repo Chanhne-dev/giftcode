@@ -1,7 +1,7 @@
 package giftcodeplugin.economy;
 
 import org.bukkit.entity.Player;
-import dev.shard.plugin.api.ShardAPI;
+import chanhne.economy.api.ShardAPI;
 
 public class ShardProvider {
 

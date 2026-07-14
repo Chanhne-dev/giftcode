@@ -32,7 +32,9 @@ public class GiftCode_Admin implements CommandExecutor {
         GiftCode giftCode = configGiftCode.getGiftCodes().get(codeName);
         UUID playerId = player.getUniqueId();
 
-        if (!(sender instanceof Player)) {
+
+        // Kiểm tra quyền
+        if (!sender.hasPermission("giftcode.use")) {
             plugin.getMessageManager().send(sender, "no_permission");
             return true;
         }

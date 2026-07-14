@@ -1,5 +1,5 @@
 name: GiftCode
-version: ${project.version}
+version: 1.4.1
 main: giftcodeplugin.Main_GiftCode
 api-version: '1.21'
 author: Chanhne
